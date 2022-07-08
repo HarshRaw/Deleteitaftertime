@@ -1,0 +1,270 @@
+Task 1:
+Please go through all the concepts from PPT
+
+
+Task 2:
+Before proceeding please refer w3schools for the same.
+Practise any example for date format and where with exclusive and inclusive parameters
+
+
+Task 3:
+
+
+
+/*
+Select CURRENT_TIMESTAMP;
+Go
+Select GETDATE() As GetDateExample
+Go
+Select DATEADD(YEAR,12,'20000101') as Yearsadded
+Go
+Select DATEADD(DAY,9,'20000101') As Daysadded
+Go
+Select GETUTCDATE() 
+Go
+SELECT YEAR('20220228') AS Year
+Go
+SELECT Day('20220228') AS day
+Go
+SELECT month('20220228') AS month
+Go
+
+Create table [Task2Day2](
+   [Name] varchar(50) Not Null,
+   [ProjectAssignDate] date Not Null,
+   [ProjectSubmissionDate] date Not Null
+);
+
+Insert Into [Task2Day2]
+values('Rajesh Kumar','20200101 12:12:00','20201121 10:01:00'),
+('Sanjay Bansal','20211101 02:42:00','20220301 10:01:00');
+
+Select * from [Task2Day2];
+
+SELECT DATEname(MONTH, '2017/08/25') AS DatePartInt;
+
+Select * from Task2Day2
+where ProjectSubmissionDate Between '20220101'And '20220401'
+Go*/
+
+
+Create table [FinalMarksheet](
+   [StudentId] int primary key,
+   [FirstName] varchar(20) not null,
+   [LastName] varchar(20) not null,
+   [MathMarks] int not null,
+   [EnglishMarks] int not null,
+   [ScienceMarks] int not null
+);
+insert into [FinalMarksheet]
+values (101,'Sanjay','Singh',58,74,32),
+(102,'Sumit','Singh',48,87,71),
+(103,'Rohit','Negi',25,67,45),
+(104,'Ashish','Verma',51,65,72),
+(105,'Arushi','Wadhwa',68,70,66);
+
+--show
+Select * from [FinalMarksheet];
+
+--Predicates
+
+Select [StudentId],[FirstName],[MathMarks], [Grade]='D' from [FinalMarksheet]
+where [MathMarks] Between 40 And 50;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='C' from [FinalMarksheet]
+where [MathMarks] Between 50 And 60;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='B' from [FinalMarksheet]
+where [MathMarks] Between 60 And 70;
+
+Select [StudentId],[FirstName],[LastName] from [FinalMarksheet]
+where [FirstName] Like '%i%' Or [LastName] Like '_e';
+
+
+--Comparison Operator
+Select [StudentId],[FirstName],[MathMarks], [Grade]='D' from [FinalMarksheet]
+where [MathMarks]>40 and  [MathMarks]<=50;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='C' from [FinalMarksheet]
+where [MathMarks]>50 And [MathMarks]<=60;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='B' from [FinalMarksheet]
+where [MathMarks]>60 And [MathMarks]<=70;
+
+Select [StudentId] , [FirstName] from [FinalMarksheet]
+where [LastName]!= 'Singh';
+
+--Arithemetic Operators
+Select [StudentId] , [FirstName], [Marks] = [MathMarks]+[EnglishMarks]+[ScienceMarks] from [FinalMarksheet];
+
+Select [StudentId] , [FirstName], [Percentage] =((([MathMarks]+[EnglishMarks]+[ScienceMarks])*0.3)),[Pass] ='Pass' from [FinalMarksheet]
+where (([MathMarks]+[EnglishMarks]+[ScienceMarks])*0.3)>30;
+
+--Concatenation
+
+Select ([FirstName]+' '+[LastName]) as [Full Name] , [StudentId] from [FinalMarksheet];
+
+
+
+Task 4:
+
+Make use of an alias with some example
+Apply some of the operations which you have learned to Northwind database
+Schema creation
+Orderby GroupBy
+Alias concept
+UNIQUE keyword
+
+/*
+Select CURRENT_TIMESTAMP;
+Go
+Select GETDATE() As GetDateExample
+Go
+Select DATEADD(YEAR,12,'20000101') as Yearsadded
+Go
+Select DATEADD(DAY,9,'20000101') As Daysadded
+Go
+Select GETUTCDATE() 
+Go
+SELECT YEAR('20220228') AS Year
+Go
+SELECT Day('20220228') AS day
+Go
+SELECT month('20220228') AS month
+Go
+
+Create table [Task2Day2](
+   [Name] varchar(50) Not Null,
+   [ProjectAssignDate] date Not Null,
+   [ProjectSubmissionDate] date Not Null
+);
+
+Insert Into [Task2Day2]
+values('Rajesh Kumar','20200101 12:12:00','20201121 10:01:00'),
+('Sanjay Bansal','20211101 02:42:00','20220301 10:01:00');
+
+Select * from [Task2Day2];
+
+SELECT DATEname(MONTH, '2017/08/25') AS DatePartInt;
+
+Select * from Task2Day2
+where ProjectSubmissionDate Between '20220101'And '20220401'
+Go
+
+Create table [FinalMarksheet](
+   [StudentId] int primary key,
+   [FirstName] varchar(20) not null,
+   [LastName] varchar(20) not null,
+   [MathMarks] int not null,
+   [EnglishMarks] int not null,
+   [ScienceMarks] int not null
+);
+insert into [FinalMarksheet]
+values (101,'Sanjay','Singh',58,74,32),
+(102,'Sumit','Singh',48,87,71),
+(103,'Rohit','Negi',25,67,45),
+(104,'Ashish','Verma',51,65,72),
+(105,'Arushi','Wadhwa',68,70,66);
+
+--show
+Select * from [FinalMarksheet];
+
+--Predicates
+
+Select [StudentId],[FirstName],[MathMarks], [Grade]='D' from [FinalMarksheet]
+where [MathMarks] Between 40 And 50;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='C' from [FinalMarksheet]
+where [MathMarks] Between 50 And 60;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='B' from [FinalMarksheet]
+where [MathMarks] Between 60 And 70;
+
+Select [StudentId],[FirstName],[LastName] from [FinalMarksheet]
+where [FirstName] Like '%i%' Or [LastName] Like '_e';
+
+Select [StudentId],[FirstName],[LastName],[EnglishMarks] from [FinalMarksheet]
+where [StudentId] In (101,103,104);
+
+
+
+--Comparison Operator
+Select [StudentId],[FirstName],[MathMarks], [Grade]='D' from [FinalMarksheet]
+where [MathMarks]>40 and  [MathMarks]<=50;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='C' from [FinalMarksheet]
+where [MathMarks]>50 And [MathMarks]<=60;
+Select [StudentId],[FirstName],[MathMarks], [Grade]='B' from [FinalMarksheet]
+where [MathMarks]>60 And [MathMarks]<=70;
+
+Select [StudentId] , [FirstName] from [FinalMarksheet]
+where [LastName]!= 'Singh';
+
+--Arithemetic Operators
+Select [StudentId] , [FirstName], [Marks] = [MathMarks]+[EnglishMarks]+[ScienceMarks] from [FinalMarksheet];
+
+Select [StudentId] , [FirstName], [Percentage] =((([MathMarks]+[EnglishMarks]+[ScienceMarks])*0.3)),[Pass] ='Pass' from [FinalMarksheet]
+where (([MathMarks]+[EnglishMarks]+[ScienceMarks])*0.3)>30;
+
+--Logical Operator
+Select [StudentId] , [FirstName] from [FinalMarksheet]
+where[FirstName]='Sanjay' or [LastName]='Verma';
+Select [StudentId] , [FirstName] from [FinalMarksheet]
+where[FirstName]='Sanjay' And [LastName]='Verma';
+Select [StudentId] , [FirstName] from [FinalMarksheet]
+where not[FirstName]='Sanjay';
+
+--Concatenation
+Select ([FirstName]+' '+[LastName]) as [Full Name] , [StudentId] from [FinalMarksheet];
+*/
+
+Create table [PersonDetails](
+  [PersonId] int ,
+  [FirstName] varchar(50) not null,
+  [LastName] varchar(50) not null,
+  [MobileNo] nvarchar(10) not null,
+  [DeliveryAddress] varchar(150) not null,
+  Constraint PK_Person Primary key(PersonId) 
+);
+Create table [OrderDetails](
+  [OrderId] int ,
+  [PersonId] int,
+  [Dish] varchar(50) not null,
+  [DeliveryBoyName] varchar(50) not null,
+  [MobileNo] nvarchar(10) not null,
+  Constraint PK_Order Primary key(OrderId), 
+  Constraint FK_PersonId Foreign Key(PersonId) REFERENCES PersonDetails(PersonId)
+  );
+Insert into [PersonDetails]
+values(1,'Harsh','Rawat',1233213219,'12/-Noida'),
+(2,'Abhishek','Thakur',5341412313,'2/-Noida'),
+(3,'Jayant','Singh',9876543210,'1/-Noida');
+
+select * from[PersonDetails];
+
+Insert into [OrderDetails]
+values(1222,1,'Burger','Raj',8233213219),
+(1223,2,'Momos','Vishal',7341412313),
+(1224,3,'Momos','Karan',6576543210),
+(1225,1,'Chowmin','Lokesh',5676543210),
+(1226,1,'Biryani','Lokesh',5676543210),
+(1227,2,'Burger','Raj',8233213219);
+
+select * from[OrderDetails];
+
+
+Select Distinct[DeliveryBoyName],[MobileNo] as [DeliveryBoyContactNumber]  from [OrderDetails];
+
+select * from [Order Details];
+select * from[Orders];
+select * from[shippers];
+Select Od.[OrderId], O.[OrderDate],O.[ShippedDate] as [Delivery Date],(Od.[UnitPrice]*Od.[Quantity]) as Amount
+from [Order Details] as Od, [Orders] as O;
+
+Select Distinct[OrderID] from [Order Details];
+
+Select [OrderID],[Orderdate],[ShipVia] = Case [Shipvia]
+when 1 then 'Speedy Express'
+when 2 then 'United Packages'
+when 3 then 'FederalShipping'
+else 'Unspecified'
+End
+from  [Orders] order by [OrderDate] Asc;
+
+Select Count([OrderID]) as NumberOfOrders,[ShipCountry] as [Country]
+from  [Orders] 
+group by [ShipCountry] ;
+
